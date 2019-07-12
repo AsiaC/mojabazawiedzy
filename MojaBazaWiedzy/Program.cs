@@ -438,5 +438,138 @@ You need to create a LINQ query to meet the requirements.
             Console.ReadKey();
         }
 
+        public static void QUESTION15()
+        {
+            Animal a = new Animal();
+            Save(a);
+            Zyrafa b = new Zyrafa();
+            Save(b);
+        }
+        public class Animal //nie 
+        {
+            public string gatunek { get; set; }
+            public int lbLap { get; set; }
+            public string imie { get; set; }
+        }
+        public class Zyrafa : Animal
+        { public string długoscSzyi { get; set; } }
+        public class Pingwin : Animal
+        { public int iloscSprawnychskrzydel { get; set; } }
+        public static void Save<T>(T target) where T : Animal, new()
+        { Console.WriteLine("Wywoluje Statyczna metode poza klasami Save. Wywolano dla: {0}", target); }
+        public static void QUESTION18()
+        {//??????????????????????????????????????????????????????????????????????????????????????????????????????????
+            IEnumerable<string> enumerable = new string[] { "A", "B", "C" };
+            // Z użyciem foreach dostępnego w IEnumerable:
+            foreach (string s in enumerable)
+                Console.WriteLine(s);
+
+            // Z użyciem Enumeratora:
+            IEnumerator<string> enumerator = enumerable.GetEnumerator();
+            while (enumerator.MoveNext())
+            {
+                string s = enumerator.Current;
+                Console.WriteLine(s);
+            }
+
+            TabDelimitedFormatter a = new TabDelimitedFormatter();
+            a.GetOutput(enumerator, 3);
+
+
+        }
+        public interface IOutputFormatter<T>
+        {
+            string GetOutput(IEnumerator<T> iterator, int recordSize);
+        }
+        public class TabDelimitedFormatter : IOutputFormatter<string>
+        {
+            readonly Func<int, char> suffix = col => col % 2 == 0 ? '\n' : '\t';
+            public string GetOutput(IEnumerator<string> iterator, int recordSize)
+            {
+                /*string output = null;
+                for (int i = 1; iterator.MoveNext(); i++)
+                {
+                    output = string.Concat(output, iterator.Current, suffix(i));
+                }
+                return output;*/
+
+                var output = new StringBuilder();
+                Console.WriteLine("output {0}", output.ToString());
+                for (int i = 1; iterator.MoveNext(); i++)
+                {
+                    output.Append(iterator.Current);
+                    output.Append(suffix(i));
+                }
+                Console.WriteLine("output end {0}", output.ToString());
+                return output.ToString();
+            }
+        }
+        public static void QUESTION19()
+        {
+            Calculate(5);
+        }
+        public static void Calculate(float amount)
+        {
+            object amountRef = amount;
+            int balance = (int)(float)amountRef;
+            Console.WriteLine(balance);
+        }
+        public static void QUESTION23()
+        {
+            Lease a = new Lease();
+
+        }
+        //public delegate void MaximumTermReachedHendler(object source, EventHandler e);
+        public delegate void MaximumTermReachedHendler(int a);
+        public class Lease
+        {
+            public event MaximumTermReachedHendler OnMaximumTermReached;
+            private int _term;
+            private const int MaximunTerm = 5;
+            private const decimal Rate = 0.034m;
+            public int Term
+            {
+                get { return _term; }
+                set
+                {
+                    if (value <= MaximunTerm)
+                        _term = value;
+                    else
+                    {
+                        if (OnMaximumTermReached != null)
+                            //OnMaximumTermReached(this, new EventArgs());
+                            OnMaximumTermReached(5);
+                    }
+                }
+            }
+        }
+        public static void QUESTION26()
+        {
+            try
+            {
+                string line;
+                using (StreamReader sr = new StreamReader("log2.txt")) //wypisze zawartość pliku
+                //using (StringReader sr = new StringReader("log.txt")) //wypisze nazwę pliku tylko to co przekazałam log.txt
+                {
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        Console.WriteLine(line);
+                    }
+                }
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine(e.ToString());
+                throw;// new FileNotFoundException("blad:{e}", e.ToString());
+                //throw new FileNotFoundException();
+            }
+        }
+        public static void QUESTION27()
+        {
+            Kiosk a = new Kiosk();
+
+
+        }
+
     }
 }
