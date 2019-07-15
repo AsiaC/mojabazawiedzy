@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.757
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29102.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MojaBazaWiedzy", "MojaBazaWiedzy\MojaBazaWiedzy.csproj", "{53E79E6F-9DE9-413E-A8F0-908D496AA4D2}"
 EndProject
@@ -34,6 +34,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Linq", "Linq\Linq.csproj", "{F73C5EE8-F935-4A25-9D6C-7920887A7F3C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kolekcje", "Kolekcje\Kolekcje.csproj", "{2C3B00AF-7AC1-453A-995B-9E8BE85EAC5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RegexNauka", "RegexNauka\RegexNauka.csproj", "{9990182F-D847-402A-94EF-2FC86DB0DB94}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +165,14 @@ Global
 		{2C3B00AF-7AC1-453A-995B-9E8BE85EAC5C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{2C3B00AF-7AC1-453A-995B-9E8BE85EAC5C}.Release|x86.ActiveCfg = Release|Any CPU
 		{2C3B00AF-7AC1-453A-995B-9E8BE85EAC5C}.Release|x86.Build.0 = Release|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Debug|x86.Build.0 = Debug|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Release|x86.ActiveCfg = Release|Any CPU
+		{9990182F-D847-402A-94EF-2FC86DB0DB94}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
