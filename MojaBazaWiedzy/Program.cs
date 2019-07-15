@@ -14,314 +14,40 @@ namespace MojaBazaWiedzy
     {
         static void Main(string[] args)
         {
-            //Kolekcje();
-            //Linq();
-            //QUESTION2();
+            QUESTION1();
+            QUESTION2();
+            //QUESTION3();
             QUESTION4();
+            //QUESTION5();
             QUESTION6();
+            QUESTION7();
+            QUESTION8();
+            QUESTION9();
+            QUESTION10();
+            QUESTION11();
+            QUESTION12();
+            QUESTION13();
+            QUESTION14();
+            QUESTION15();
+            QUESTION16();
+            QUESTION17();
+            QUESTION18();
+            QUESTION19();
+            QUESTION20();
+            QUESTION21();
+            //QUESTION22();
+            QUESTION23();
+            QUESTION24();
+            //QUESTION25();
+            QUESTION26();
+            QUESTION27();
+            //QUESTION28();
+            //QUESTION29();
+            QUESTION30();
             Console.ReadKey();
         }
-
-        public static void Kolekcje()
-        {
-            //Question 1
-
-            //ArrayList
-            Console.WriteLine("ArrayList");
-            ArrayList arraylist = new ArrayList();
-            //arraylist.Add(13);
-            //arraylist.Add(11);
-            arraylist.Add("Asia");
-            arraylist.Add("Ala");
-            foreach (var item in arraylist)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine("Liczba elementów, które ArrayLista może zawierać: {0}", arraylist.Capacity);
-            Console.WriteLine("Liczba elementów: {0}", arraylist.Count);
-            arraylist.Sort(); //tylko gdzy mam obiekty tego samego rodzaju, bo mogę mieć różne ale różnych nie mogę sortować
-            foreach (var item in arraylist)
-            {
-                Console.WriteLine(item);
-            }
-            Console.WriteLine();
-
-            //Hashtable
-            Console.WriteLine("Hashtable");
-            Hashtable ht = new Hashtable();
-            ht.Add("001", "Audi");
-            ht.Add("002", "Pagani");
-            ht.Add("003", "Lamborghini");
-            ht.Add("004", "Nissan");
-            ht.Add("005", "Volvo");
-            ht.Add("006",null);
-            if(ht.ContainsKey("005")) //jeśli istnieje klucz 005
-                Console.WriteLine("Wartość klucza 005 : {0}", ht["005"]);
-            if (ht.ContainsValue("Volvo"))// Możemy sprawdzić czy w kolekcji jest konkretna wartość
-                Console.WriteLine("Volvo jest elementem kolekcji");
-            // Pobierzemy teraz wszystkie klucze
-            ICollection key = ht.Keys;
-            foreach (string k in key)
-            {
-                Console.WriteLine("Klucz: {0} || wartość: {1}", k, ht[k]);
-            }
-            ht.Clear(); //czyślimy całą zawartość
-            Console.WriteLine("Pozostała liczba elementów: {0}", ht.Count); //0 elementów
-            Console.WriteLine();
-
-            //SortedList 
-            Console.WriteLine("SortedList ");
-            SortedList sl = new SortedList();
-            sl.Add("001", "Audi"); // Dodajemy pary: klucz/wartość
-            sl.Add("002", "Pagani");
-            sl.Add("005", "Volvo");
-            sl.Add("004", "Nissan"); // element ten zostaje dodany do listy przed pozycją 005
-            sl.Add("003", "Lamborghini"); // element ten zostaje dodany do listy przed powyższym elementem
-            // Dostęp przez klucz -> jak HashTable
-            if (sl.ContainsKey("004"))
-                Console.WriteLine("Wartość: {0}", sl["004"]);
-            // Dostęp przez wartość -> jak ArrayList
-            if (sl.ContainsValue("Nissan"))
-                Console.WriteLine("Nissan jest elementem kolekcji");
-            ICollection keys = sl.Keys;
-            foreach (string k in keys)
-            {
-                Console.WriteLine("Klucz: {0} || wartość: {1}", k, sl[k]);
-            }
-            Console.WriteLine();
-
-            //Stack
-            Console.WriteLine("Stack");
-            Stack st = new Stack();
-            st.Push("A");
-            st.Push("B");
-            st.Push("C");
-            st.Push("D");
-            // Nasz stos jest pełny. Zgodnie z definicją kolejny element powinien trafić na pierwszą pozycję
-            st.Push("TEST");
-            Console.WriteLine("Zawartość stosu: ");
-            foreach (var item in st)
-            {
-                Console.WriteLine(item);
-            }
-            // usuwamy 2 pozycje
-            st.Pop(); //usunie sie TEST
-            st.Pop(); //usunie sie D
-            // Możemy również zwrócić obiekt na szczycie stosu bez usuwania
-            Console.WriteLine("Pierwszy element: {0}", st.Peek()); //C
-            Console.WriteLine();
-
-            //Queue 
-            Console.WriteLine("Queue");
-            Queue q = new Queue();
-            q.Enqueue("A");
-            q.Enqueue("B");
-            q.Enqueue("C");
-            q.Enqueue("D");
-            q.Dequeue(); //first-in, first-out. Pierwszy dodany el to pierwszy do usunięcia.Usuneliśmy A
-            Console.WriteLine("Zawartość kolejki: ");
-            foreach (var item in q)
-            {
-                Console.WriteLine(item);
-            }
-            // Spróbujmy jeszcze zobaczyć jaki element usuwamy
-            string tekst = (string)q.Dequeue();
-            Console.WriteLine("Usuneliśmy: {0}", tekst); //Usunelismy B
-            Console.WriteLine();
-
-            //BitArray 
-            Console.WriteLine("BitArray");
-            // Tworzymy dwie tablice o rozmiarze 8 bitów
-            BitArray ba1 = new BitArray(8);
-            BitArray ba2 = new BitArray(8);
-            byte[] a = { 60 };
-            byte[] b = { 13 };
-            // zapisujemy wartości w naszych tablicach
-            ba1 = new BitArray(a);
-            ba2 = new BitArray(b);
-            // Zawartość pierwszej z nich
-            Console.WriteLine("Tablica bitów ba: 60");
-            for (int i = 0; i < ba1.Count; i++)
-            {
-                // Co oznacza poniższy zapis
-                // Na każdy wyraz poświęcamy 6 znaków
-                // Ale z wyrównianiem do lewej strony
-                // Gdybyśmy zapis zmienili na {0, 6} 
-                // Wyrównanie byłoby do prawej strony
-                Console.Write("{0, -6}", ba1[i]);
-            }
-            Console.WriteLine();
-            // Zawartość drugiej z nich
-            Console.WriteLine("Tablica bitów ba: 13");
-            for (int i = 0; i < ba2.Count; i++)
-            {
-                Console.Write("{0, -6}", ba2[i]);
-            }
-            Console.WriteLine();
-            // Połączmy teraz obie tablie operatorem logicznym AND
-            BitArray ba3 = new BitArray(8);
-            ba3 = ba1.And(ba2);
-            Console.WriteLine("Tablica bitów ba3: ba1 i ba2");
-            for (int i = 0; i < ba3.Count; i++)
-            {
-                Console.Write("{0, -6}", ba3[i]);
-            }
-            // Wynik działania programu
-            // Tablica bitów ba: 60
-            // False False True  True  True  True  False False
-            // Tablica bitów ba: 13
-            // True  False True  True  False False False False
-            // Tablica bitów ba3: ba1 i ba2
-            // False False True  True  False False False False
-        }
-        public static void Linq()
-        {
-            //LINQ uzywa wyraźeń lambda, ale może też używać query expression, te dwie składnie uzupełniają sie
-            skladniaLAMBDA();
-            skladniaQUERYEXPRESSION();
-        }
-        private static void skladniaLAMBDA()
-        {  
-            string[] TableStrings = { "kot", "pies", "kon", "chomik", "hipopotam", "żyrafa", "nosorożec" };
-            int[] TableInt = { 16, 22, 3, 9, 5, 7 };
-
-            Console.WriteLine("w nowej tabeli umiesc te składowe gdzie kozdego pojedyńczego długość > 4");
-            IEnumerable<string> WyrazyDluzszeNiz4 = TableStrings.Where(x => x.Length > 4);
-            foreach (var item in WyrazyDluzszeNiz4)
-                Console.WriteLine(item);
-
-            Console.WriteLine("w nowej tabeli umiesc te składowe gdzie kozdy pojedyńczy ma litere o");
-            IEnumerable<string> WyrazyZO = TableStrings.Where(x => x.Contains("o"));
-            foreach (var item in WyrazyZO)
-                Console.WriteLine(item);
-
-            Console.WriteLine("pobiera wszystkie łańcuchy zawierające literę a, sortuje je wg długości i zamienia wszystkie litery na wielkie");
-            IEnumerable<string> sortujeIUppercase = TableStrings.Where(x => x.Contains("o")).OrderBy(x => x.Length).Select(x => x.ToUpper());
-            foreach (var item in sortujeIUppercase)
-                Console.WriteLine(item);
-
-            IEnumerable<string> sortujeIUppercase2 = TableStrings
-                .Where(x => x.Contains("o"))
-                .Select(x => x.ToUpper())
-                .OrderBy(x => x.Length);
-            foreach (var item in sortujeIUppercase2)
-                Console.WriteLine(item);
-            /*Operator Where już przedstawiliśmy. Jego działanie polega na zwróceniu przefiltrowanej wersji sekwencji
-wejściowej.Operator OrderBy zwraca posortowaną wersję sekwencji wejściowej, a metoda Select —
-sekwencję, w której każdy element wejściowy jest przekształcony lub przedstawiony(ang.projected)
-za pomocą danego wyrażenia lambda(w tym przypadku n.ToUpper()).Dane są przepuszczane przez
-łańcuch operatorów od lewej, więc najpierw zostały przefiltrowane, potem posortowane, a na koniec
-przekształcone.*/
-
-            //Wyrażenie lambda pobierające wartość i zwracające wartość logiczną nazywa się predykatem.
-
-            Console.WriteLine("Sort Alfabetyczny");
-            IEnumerable<string> Alfabetycznie = TableStrings.OrderBy(x => x);
-            foreach (var item in Alfabetycznie)
-                Console.WriteLine(item);
-
-            Console.WriteLine("Sort Alfabetyczny2");
-            IEnumerable<int> Alfabetycznie2 = TableInt.OrderBy(x => x);
-            foreach (var item in Alfabetycznie2)
-                Console.WriteLine(item);
-
-            Console.WriteLine("Operator Take zwraca x pierwszych elementów, a resztę odrzuca");
-            IEnumerable<string> Wez3Pierwsze = TableStrings.Take(3);
-            foreach (var item in Wez3Pierwsze)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("Operator Skip ignoruje x pierwszych elementów i zwraca pozostałe:");
-            IEnumerable<string> Odrzuc3pierwsze = TableStrings.Skip(4);
-            foreach (var item in Odrzuc3pierwsze)
-            {
-                Console.WriteLine(item);
-            }
-
-            Console.WriteLine("Operator Reverse odwraca kolejność elementów");
-            IEnumerable<string> OdwrocKolejnosc = TableStrings.Reverse();
-            foreach (var item in OdwrocKolejnosc)
-            {
-                Console.WriteLine(item);
-            }
-
-
-            //Operatory elementów wybierają po jednym elemencie z sekwencji wejściowej.
-            string firstElement = TableStrings.First();
-            Console.WriteLine("firstelement={0}", firstElement);
-            string lastElement = TableStrings.Last();
-            Console.WriteLine("lastElement={0}", lastElement);
-            string secondElement = TableStrings.ElementAt(1);
-            Console.WriteLine("second element={0}", secondElement);
-
-            //Operatory agregacji zwracają wartość skalarną
-            int count = TableInt.Count();
-            int min = TableInt.Min();
-            Console.WriteLine("count={0}, min={1}", count, min);
-
-            //Kwantyfikatory zwracają wartości typu bool:
-            bool hasTheNumberNine = TableInt.Contains(9); // prawda
-            bool hasMoreThanZeroElements = TableInt.Any(); // prawda
-            bool hasAnOddElement = TableInt.Any(n => n % 2 != 0); // prawda
-
-            //Niektóre operatory zapytań przyjmują po dwie sekwencje wejściowe. Należą do nich operator Concat dodający jedną sekwencję do drugiej oraz Union robiący to samo, tylko z eliminacją duplikatów:
-            int[] seq1 = { 1, 2, 3 };
-            int[] seq2 = { 3, 4, 5 };
-            IEnumerable<int> concat = seq1.Concat(seq2); // { 1, 2, 3, 3, 4, 5 }
-            IEnumerable<int> union = seq1.Union(seq2); // { 1, 2, 3, 4, 5 }
-
-            //Filtrowanie 
-            //Where, Take, TakeWhile, Skip, SkipWhile, Distinct
-        }
-        private static void skladniaQUERYEXPRESSION()
-        {
-            //Początek każdego wyrażenia zapytaniowego stanowi klauzula from, a koniec — select lub group.
-
-            string[] names = { "Jan", "Olga", "Daria", "Robert", "Zenon" };
-            IEnumerable<string> query =
-                                        from n in names
-                                        where n.Contains("a") // filtrowanie elementów
-                                        orderby n.Length // sortowanie elementów
-                                        select n.ToUpper(); // przekształcanie elementów (projekcja)
-            foreach (string name in query) Console.Write(name + " ");
-            Console.WriteLine();
-
-            IEnumerable<string> query2 =
-                            from n in names
-                            where n.Contains("a") // filtrowanie elementów
-                            select n;
-            foreach (var item in query2) Console.Write(item + " ");
-            Console.WriteLine();
-
-            // Data source.
-            int[] scores = { 90, 71, 82, 93, 75, 82 };
-
-            // Query Expression.
-            IEnumerable<int> scoreQuery =
-                from score in scores
-                where score > 80
-                orderby score descending //malejaco czyli od najwiekszej
-                select score; //must end with select or group
-            foreach (var item in scoreQuery) Console.Write(item + " ");
-            Console.WriteLine();
-
-            //wykonywanie opóźnione
-            var numbers = new List<int>();
-            numbers.Add(1);
-            IEnumerable<int> query1 = numbers.Select(n => n * 10); // budowa zapytania
-            numbers.Add(2); // dodanie elementu
-            foreach (int n in query1) Console.Write(n + " "); // 10|20|
-            Console.WriteLine();
-
-            //zapisanie wyniku do listy nowej
-            var numbers2 = new List<int>() { 1, 2 };
-            List<int> timesTen = numbers2
-            .Select(n => n * 10)
-            .ToList(); // natychmiast wysyła dane do listy List<int>
-            numbers2.Clear();
-            Console.WriteLine(timesTen.Count); // nadal 2
-        }
+        private static void QUESTION1()
+        { Console.WriteLine("W pliku word"); }
         private static void QUESTION2()
         {/*QUESTION 2 
 You are developing an application. 
@@ -437,7 +163,16 @@ You need to create a LINQ query to meet the requirements.
 
             Console.ReadKey();
         }
-
+        private static void QUESTION10()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION11()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION12()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION13()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION14()
+        { Console.WriteLine("W pliku word"); }
         public static void QUESTION15()
         {
             Animal a = new Animal();
@@ -457,6 +192,10 @@ You need to create a LINQ query to meet the requirements.
         { public int iloscSprawnychskrzydel { get; set; } }
         public static void Save<T>(T target) where T : Animal, new()
         { Console.WriteLine("Wywoluje Statyczna metode poza klasami Save. Wywolano dla: {0}", target); }
+        private static void QUESTION16()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION17()
+        { Console.WriteLine("W pliku word"); }
         public static void QUESTION18()
         {//??????????????????????????????????????????????????????????????????????????????????????????????????????????
             IEnumerable<string> enumerable = new string[] { "A", "B", "C" };
@@ -514,6 +253,10 @@ You need to create a LINQ query to meet the requirements.
             int balance = (int)(float)amountRef;
             Console.WriteLine(balance);
         }
+        private static void QUESTION20()
+        { Console.WriteLine("W pliku word"); }
+        private static void QUESTION21()
+        { Console.WriteLine("W pliku word"); }
         public static void QUESTION23()
         {
             Lease a = new Lease();
@@ -543,6 +286,9 @@ You need to create a LINQ query to meet the requirements.
                 }
             }
         }
+        private static void QUESTION24()
+        { Console.WriteLine("W pliku word"); }
+
         public static void QUESTION26()
         {
             try
@@ -568,8 +314,12 @@ You need to create a LINQ query to meet the requirements.
         {
             Kiosk a = new Kiosk();
 
-
         }
-
+        public static void QUESTION29()
+        {
+            //class Scorecard
+        }
+        private static void QUESTION30()
+        { Console.WriteLine("W pliku word"); }
     }
 }
