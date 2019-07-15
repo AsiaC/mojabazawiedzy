@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Runtime.Serialization;
+using System.Text.RegularExpressions;
 
 namespace MojaBazaWiedzy
 {
@@ -16,9 +17,9 @@ namespace MojaBazaWiedzy
         {
             QUESTION1();
             QUESTION2();
-            //QUESTION3();
+            //QUESTION3(); - brak
             QUESTION4();
-            //QUESTION5();
+            //QUESTION5(); - brak
             QUESTION6();
             QUESTION7();
             QUESTION8();
@@ -35,15 +36,16 @@ namespace MojaBazaWiedzy
             QUESTION19();
             QUESTION20();
             QUESTION21();
-            //QUESTION22();
+            //QUESTION22();- brak
             QUESTION23();
             QUESTION24();
-            //QUESTION25();
+            //QUESTION25();- brak
             QUESTION26();
             QUESTION27();
-            //QUESTION28();
-            //QUESTION29();
+            //QUESTION28();- brak
+            //QUESTION29();- brak
             QUESTION30();
+            QUESTION31();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -321,5 +323,14 @@ You need to create a LINQ query to meet the requirements.
         }
         private static void QUESTION30()
         { Console.WriteLine("W pliku word"); }
+        private static void QUESTION31()
+        {
+            String regExPattern = "href\\s*=\\s*(?:\"(?<1>[^\"]*)\"|(?<1>\\S+))";
+            Regex evaluator = new Regex(regExPattern, RegexOptions.Compiled);
+            Console.WriteLine("WPROWADZ DANE");
+            string inputData = Console.ReadLine();
+            bool odp = evaluator.IsMatch(inputData); 
+            Console.WriteLine(odp); 
+        }
     }
 }

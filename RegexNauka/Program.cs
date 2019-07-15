@@ -34,9 +34,28 @@ namespace RegexNauka
 
             //często używanym operatorem w wyr regularnych jest alternatywa(|). Poniższe polecenie powoduje dopasowanie imion Karol i Karolina:
             //Nawiasy wokół alternatywy pozwalają na oddzielenie alternatyw od pozostałej części wyrażenia
-            Console.WriteLine(Regex.IsMatch("Karol", "Kar(ol|olina)?")); // prawda
+            Console.WriteLine(Regex.IsMatch("Ka", "Kar(ol|olina)?")); // prawda
+            //? odnosi sie do wszystkich znaków w nawiasie, Gdyby nie było nawiasu to odnosi sie tylko do ostatniego znaku przed
 
 
+            //?
+            Console.WriteLine("Sprawdzenie jak działa ? ");
+            Regex wyrazenie = new Regex(@"pomidory?");
+            string testAsi = "pom";
+            bool odp=wyrazenie.IsMatch(testAsi);
+            Console.WriteLine("wynik mojego testu={0}",odp); //false
+            string testAsi2 = "pomidor";
+            bool odp2 = wyrazenie.IsMatch(testAsi2);
+            Console.WriteLine("wynik mojego testu={0}", odp2); //true
+            string testAsi3 = "pomidory";
+            bool odp3 = wyrazenie.IsMatch(testAsi3);
+            Console.WriteLine("wynik mojego testu={0}", odp3); //true
+
+            //Kompilowane wyrażenia regularne
+            Console.WriteLine("spr Kompilowane wyrażenia regularne");
+            Regex wyr = new Regex(@"pomidory?",RegexOptions.Compiled);
+            Console.WriteLine(wyr.Match("pomidor")); //Match ma 2 argumenty pierwszy to ciąg znaków w którym szukamy, drugi to czego szukamy
+            Console.WriteLine(wyr.Match("pomidory"));
 
             Console.ReadKey();
             /*
