@@ -28,15 +28,14 @@ namespace RegexNauka
             Console.WriteLine(m2); // kolory
 
             //Metoda Matches() zwraca wszystkie dopasowania w postaci tablicy.
-            foreach (Match ms in Regex.Matches("Tylko jeden kolor? Mam na myśli dwa kolory!", @"kolory?"))
-                Console.WriteLine(m); //zwróci kolor, kolory
+            foreach (Match ms in Regex.Matches("Tylko jeden kolor? Mam na myśli dwa kolory !", @"kolory?"))
+                Console.WriteLine("Matches: "+ms); //zwróci kolor, kolory
 
 
             //często używanym operatorem w wyr regularnych jest alternatywa(|). Poniższe polecenie powoduje dopasowanie imion Karol i Karolina:
             //Nawiasy wokół alternatywy pozwalają na oddzielenie alternatyw od pozostałej części wyrażenia
             Console.WriteLine(Regex.IsMatch("Ka", "Kar(ol|olina)?")); // prawda
             //? odnosi sie do wszystkich znaków w nawiasie, Gdyby nie było nawiasu to odnosi sie tylko do ostatniego znaku przed
-
 
             //?
             Console.WriteLine("Sprawdzenie jak działa ? ");

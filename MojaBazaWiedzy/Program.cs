@@ -15,6 +15,7 @@ namespace MojaBazaWiedzy
     {
         static void Main(string[] args)
         {
+            /*
             QUESTION1();
             QUESTION2();
             //QUESTION3(); - brak
@@ -46,6 +47,9 @@ namespace MojaBazaWiedzy
             //QUESTION29();- brak
             QUESTION30();
             QUESTION31();
+            */
+            QUESTION90();
+
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -332,5 +336,26 @@ You need to create a LINQ query to meet the requirements.
             bool odp = evaluator.IsMatch(inputData); 
             Console.WriteLine(odp); 
         }
+        private static void QUESTION90()
+        {
+            Console.WriteLine("QUESTION90");
+            //string url = "https://www.google.com";
+            string url = "http://www.google.com";
+            const string pattern = @"http://(www\.)?([^\.]+)\.com";
+            List<string> result = new List<string>();
+            MatchCollection myMatches = Regex.Matches(url, pattern);
+
+            foreach (Match currentMatch in myMatches)
+            {
+                result.Add(currentMatch.Value);
+            }
+
+            foreach (string wynik in result)
+            {
+                Console.WriteLine("wynik: "+wynik);
+            }
+            
+        }
+
     }
 }
