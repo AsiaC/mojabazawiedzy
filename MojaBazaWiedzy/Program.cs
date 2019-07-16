@@ -51,7 +51,7 @@ namespace MojaBazaWiedzy
             QUESTION78();
             QUESTION155();
             QUESTION158();*/
-
+            QUESTION35();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -444,6 +444,10 @@ You need to create a LINQ query to meet the requirements.
         {
             QUESTION68();
         }
-       
+        private static void QUESTION35()
+        {
+            //Dyrektywy preprocesora
+            Console.WriteLine("W pliku word i DyrektywyPreprocesora");
+        }
     }
 }
