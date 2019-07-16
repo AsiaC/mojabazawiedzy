@@ -47,8 +47,10 @@ namespace MojaBazaWiedzy
             //QUESTION29();- brak
             QUESTION30();
             QUESTION31();
-            */
-            QUESTION90();
+            QUESTION68();
+            QUESTION78();
+            QUESTION155();
+            QUESTION158();*/
 
             Console.ReadKey();
         }
@@ -94,7 +96,7 @@ You need to create a LINQ query to meet the requirements.
             Loan lo2 = new Loan("pożyczka druga");
             Loan lo3 = new Loan("pożyczka trzecia");
             Loan[] arr = new Loan[] { lo1, lo2, lo3 };
-           
+
             LoanCollection loan = new LoanCollection(arr);
         }
         private static void QUESTION6()
@@ -333,12 +335,12 @@ You need to create a LINQ query to meet the requirements.
             Regex evaluator = new Regex(regExPattern, RegexOptions.Compiled);
             Console.WriteLine("WPROWADZ DANE");
             string inputData = Console.ReadLine();
-            bool odp = evaluator.IsMatch(inputData); 
-            Console.WriteLine(odp); 
+            bool odp = evaluator.IsMatch(inputData);
+            Console.WriteLine(odp);
         }
-        private static void QUESTION90()
+        private static void QUESTION68()
         {
-            Console.WriteLine("QUESTION90");
+            Console.WriteLine("QUESTION68");
             //string url = "https://www.google.com";
             string url = "http://www.google.com";
             const string pattern = @"http://(www\.)?([^\.]+)\.com";
@@ -348,14 +350,100 @@ You need to create a LINQ query to meet the requirements.
             foreach (Match currentMatch in myMatches)
             {
                 result.Add(currentMatch.Value);
+                //result.Add(currentMatch.Groups.ToString());
             }
-
+            //result = (List<string>)myMatches.GetEnumerator();
             foreach (string wynik in result)
             {
-                Console.WriteLine("wynik: "+wynik);
+                Console.WriteLine("wynik: " + wynik);
             }
-            
-        }
 
+        }
+        private static void QUESTION78()
+        {
+            Console.WriteLine("QUESTION78");
+            string input = "789-456-123";
+            //string pattern = @"[0-9][0-9][0-9]\-[0-9][0-9][0-9]\-[0-9][0-9][0-9]";
+            //string pattern = @"[0-9]*\-[0-9]*\-[0-9]*";
+            string pattern = @"[0-9]{3}\-[0-9]{3}\-[0-9]{3}";
+
+            var regex = new Regex(pattern);
+            var matches = regex.Matches(input);
+            var validPhoneNumbers = new List<String>();
+            var validPhoneNumbers2 = new List<String>();
+            var validPhoneNumbers3 = new List<String>();
+            foreach (Match match in matches)
+            {
+                if (match.Success)
+                {
+                    validPhoneNumbers.Add(match.Value);
+                }
+            }
+            foreach (var item in validPhoneNumbers)
+            {
+                Console.WriteLine("validPhoneNumbers " + item);
+            }
+
+            validPhoneNumbers2 = (from Match match in matches
+                                  where match.Success
+                                  select match.Value).ToList();
+            foreach (var item in validPhoneNumbers2)
+            {
+                Console.WriteLine("validPhoneNumbers2 " + item);
+            }
+
+            validPhoneNumbers3 = (from Match match in matches
+                                  where match.Success
+                                  select match.Success.ToString()).ToList();
+            foreach (var item in validPhoneNumbers3)
+            {
+                Console.WriteLine("validPhoneNumbers3 " + item); //to zwróci true
+            }
+
+            //Match m = Regex.Match(input, pattern);
+            //Console.WriteLine(m.ToString()); //bez to string też może być
+        }
+        private static void QUESTION155()
+        {
+            Console.WriteLine("QUESTION155");
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write("Wpisz cenę: ");
+                string price = Console.ReadLine();
+                //string wzorCeny = @"^(-)?\d+(\.\d\d)?";
+
+                //Nie bo !Regex a gdy true to "Valid price"
+                //if (!Regex.IsMatch(price, @"^(-)?\d+(\.\d\d)?"))
+                //    Console.WriteLine("Valid price");
+                //else
+                //    Console.WriteLine("Invalid price");
+
+                //Nie bo (-)? Czyli zero lub jedno a ja nie mogę mieć wcale
+                //if (Regex.IsMatch(price, @"^(-)?\d+(\.\d\d)?"))
+                //    Console.WriteLine("Valid price");
+                //else
+                //    Console.WriteLine("Invalid price");
+
+                Regex reg = new Regex(@"^\d+(\.\d\d)?");
+                if (reg.IsMatch(price))
+                    Console.WriteLine("Valid price");
+                else
+                    Console.WriteLine("Invalid price");
+
+                //Nie bo (-)? Czyli zero lub jedno a ja nie mogę mieć wcale
+                //    Regex reg2 = new Regex(@"^(-)?\d+(\.\d\d)?");
+                //if(reg2.IsMatch(price))
+                //    Console.WriteLine("Valid price");
+                //else
+                //    Console.WriteLine("Invalid price");
+
+                Console.WriteLine("");
+            }
+        }
+        private static void QUESTION158()
+        {
+            QUESTION68();
+        }
+       
     }
 }

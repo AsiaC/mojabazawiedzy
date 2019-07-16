@@ -10,7 +10,7 @@ namespace RegexNauka
     class Program
     {
         static void Main(string[] args)
-        {
+        {/*
             //spr czy uż wprowadził poprawny adres email
             Regex regEmail = new Regex(@"^[a-z][a-z0-9_]*@[a-z0-9]*\.[a-z]{2,3}$");
             Console.WriteLine("Podaj email");
@@ -55,6 +55,67 @@ namespace RegexNauka
             Regex wyr = new Regex(@"pomidory?",RegexOptions.Compiled);
             Console.WriteLine(wyr.Match("pomidor")); //Match ma 2 argumenty pierwszy to ciąg znaków w którym szukamy, drugi to czego szukamy
             Console.WriteLine(wyr.Match("pomidory"));
+
+            //walidacja url i zapis do listy
+                Console.WriteLine("QUESTION68");
+                //string url = "https://www.google.com";
+                string url = "http://www.google.com";
+                const string pattern = @"http://(www\.)?([^\.]+)\.com";
+                List<string> result = new List<string>();
+                MatchCollection myMatches = Regex.Matches(url, pattern);
+
+                foreach (Match currentMatch in myMatches)
+                {
+                    result.Add(currentMatch.Value);
+                }
+
+                foreach (string wynik in result)
+                {
+                    Console.WriteLine("wynik: " + wynik);
+                }
+
+            //walidacja nr tel
+            Console.WriteLine("QUESTION78");
+            string input = "789-456-123";
+                //string pattern = @"[0-9][0-9][0-9]\-[0-9][0-9][0-9]\-[0-9][0-9][0-9]";
+                //string pattern = @"[0-9]*\-[0-9]*\-[0-9]*";
+                string wzorTelefonu = @"[0-9]{3}\-[0-9]{3}\-[0-9]{3}"; //{3}-trzy wystąpienia
+                Match mat = Regex.Match(input, wzorTelefonu);
+                Console.WriteLine(mat.ToString());
+*/
+            //walidacja ceny, żeby była dodatnia oraz z 2 miejscami po przecinku
+            Console.WriteLine("QUESTION155");
+            string cena0 = "6.55";
+            string cena1 = "-6.55";
+            double cena2 = 6;
+            string cena22 = cena2.ToString();
+            double cena3 = -6;
+            string cena33 = (-6).ToString();
+            double cena4 = -6.55;
+            double cena5 = 6.556;
+            //string wzorCeny = @"^(-)?\d+(\.\d\d)?"; //cały nawias odwołuje się do ?
+            string wzorCeny = @"^\d+(\.\d\d)?";
+            Match ma0 = Regex.Match(cena0,wzorCeny);
+            Console.WriteLine(ma0.ToString());
+
+            Match ma1 = Regex.Match(cena1, wzorCeny);
+            Console.WriteLine(ma1.ToString());
+
+            Match ma2 = Regex.Match(cena22, wzorCeny);
+            Console.WriteLine(ma2.ToString());
+
+            Match ma3 = Regex.Match(cena33, wzorCeny);
+            Console.WriteLine(ma3.ToString());
+
+            Match ma4 = Regex.Match(cena4.ToString(), wzorCeny);
+            Console.WriteLine(ma4.ToString());
+
+            Match ma5 = Regex.Match(cena5.ToString(), wzorCeny);
+            Console.WriteLine(ma5.ToString());
+
+            Regex wy5 = new Regex(wzorCeny, RegexOptions.Compiled);
+            Console.WriteLine(wy5.Match(cena5.ToString()));
+
 
             Console.ReadKey();
             /*
