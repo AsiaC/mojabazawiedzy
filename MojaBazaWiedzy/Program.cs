@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.Web.Script.Serialization;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
+using System.Diagnostics;
 
 namespace MojaBazaWiedzy
 {
@@ -52,6 +53,8 @@ namespace MojaBazaWiedzy
             QUESTION155();
             QUESTION158();*/
             QUESTION35();
+            QUESTION62();
+
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -448,6 +451,21 @@ You need to create a LINQ query to meet the requirements.
         {
             //Dyrektywy preprocesora
             Console.WriteLine("W pliku word i DyrektywyPreprocesora");
+        }
+        private static void QUESTION62()
+        {
+            //Dyrektywy preprocesora
+            Console.WriteLine("W pliku word i DyrektywyPreprocesora");
+
+            double a = 5, b = 2, c = 1.1;
+            double interestAmount = a * b * c;
+            LogLine("Interest Amount: ", interestAmount.ToString("c"));
+            Console.WriteLine("InterestAmount={0}", interestAmount);
+        }
+        [Conditional("DEBUG")]
+        public static void LogLine(string message, string detail)
+        {
+            Console.WriteLine("Log: {0}={1}", message, detail);
         }
     }
 }
