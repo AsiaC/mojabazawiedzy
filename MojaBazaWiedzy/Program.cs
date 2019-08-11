@@ -52,9 +52,11 @@ namespace MojaBazaWiedzy
             QUESTION78();
             QUESTION155();
             QUESTION158();*/
-            QUESTION35();
-            QUESTION62();
-            QUESTION163();
+            //QUESTION35();
+            //QUESTION62();
+            //QUESTION163();
+            QUESTION37();
+
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -473,6 +475,18 @@ You need to create a LINQ query to meet the requirements.
             //Dyrektywy preprocesora
             Console.WriteLine("W pliku word i DyrektywyPreprocesora i Q62");
         }
+        private static void QUESTION37()
+        {
+            
+            int loanAmount=0;
+            int loanTerm=2;
+            decimal loanRate=3;
+            //loanAmount<=0
+            Trace.Assert(loanAmount>0);
+            decimal interestAmount = loanAmount * loanTerm * loanRate;
 
+            Console.WriteLine(interestAmount);
+
+        }
     }
 }
