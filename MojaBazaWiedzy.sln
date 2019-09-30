@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DyrektywyPreprocesora", "Dy
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoggingAndTracing", "LoggingAndTracing\LoggingAndTracing.csproj", "{623A2388-2151-47BE-AFDE-9E26D39EF17F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encryption", "Encryption\Encryption.csproj", "{1B40684F-3D76-43E3-B95A-FF11F5CEC906}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -193,6 +195,14 @@ Global
 		{623A2388-2151-47BE-AFDE-9E26D39EF17F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{623A2388-2151-47BE-AFDE-9E26D39EF17F}.Release|x86.ActiveCfg = Release|Any CPU
 		{623A2388-2151-47BE-AFDE-9E26D39EF17F}.Release|x86.Build.0 = Release|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Debug|x86.Build.0 = Debug|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Release|x86.ActiveCfg = Release|Any CPU
+		{1B40684F-3D76-43E3-B95A-FF11F5CEC906}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
