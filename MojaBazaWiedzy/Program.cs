@@ -60,7 +60,10 @@ namespace MojaBazaWiedzy
             //QUESTION37();
             //QUESTION117();
             //QUESTION89();
-            QUESTION11();
+            //QUESTIONALL236();
+            //QUESTIONALL229();
+            //QUESTIONALL219();
+            QUESTIONALL218();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -611,7 +614,75 @@ You need to create a LINQ query to meet the requirements.
                 return false;
             }
         }
+        private static void QUESTIONALL236()
+        {
+            ProcessFile("plik1", "zawartość pliku");
+        }
+        protected static void ProcessFile(string fileName, string value)
+        {
+            StreamWriter streamWriter = null;
+            streamWriter = new StreamWriter(fileName);
+            streamWriter.Write(value);
+            streamWriter.Close();
 
+        }
+        private static void QUESTIONALL229()
+        {
+            Console.WriteLine("QUESTIONALL229");
+            Class2 a1 = new Class2();
+            a1.Method1();
+        }
+        public class Class1 : Class2 { }
+        public interface INewInterface { void Method1(); }
+        public class Class2 : INewInterface {
+            internal void Method1()
+            {
 
+                throw new NotImplementedException();
+            }
+
+            void INewInterface.Method1()
+            {
+                throw new NotImplementedException();
+            }
+
+            //void INewInterface.Method1() { throw new NotImplementedException(); }
+        }
+
+        private static void QUESTIONALL219()
+        {
+            Console.WriteLine("QUESTIONALL219");
+            DoWork();
+        }
+        static TraceSource ts = new TraceSource("Contoso",SourceLevels.ActivityTracing );
+        public static void DoWork()
+        {
+            var orginalId = Trace.CorrelationManager.ActivityId;
+            try {
+                var guid = Guid.NewGuid();
+                ts.TraceTransfer(1, "Changing activity", guid);
+                Trace.CorrelationManager.ActivityId = guid;
+                ts.TraceEvent(TraceEventType.Start, 0, "Start");
+
+            }
+            finally {
+                ts.TraceTransfer(1,"Changing activity", orginalId);
+                ts.TraceEvent(TraceEventType.Stop, 0, "Stop");
+                Trace.CorrelationManager.ActivityId = orginalId;
+            }
+        }
+        private static void QUESTIONALL218()
+        {
+            Console.WriteLine("QUESTIONALL218");
+            DateTime dat= DateTime.Today;
+            DisplayTemperture(dat, 25.25);
+        }
+        public static void DisplayTemperture(DateTime date, double temp)
+        {
+            string output;
+            output = string.Format("Temperature at {0:t} on {0:mm/dd/yy}", date, temp){1:N2};
+            string lblMessage = output;
+            Console.WriteLine(lblMessage);
+        }
     }
 }
