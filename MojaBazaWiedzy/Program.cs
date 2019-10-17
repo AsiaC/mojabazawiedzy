@@ -9,6 +9,8 @@ using System.Web.Script.Serialization;
 using System.Runtime.Serialization;
 using System.Text.RegularExpressions;
 using System.Diagnostics;
+using System.Security.Cryptography.X509Certificates;
+using System.Security.Cryptography;
 
 namespace MojaBazaWiedzy
 {
@@ -55,8 +57,10 @@ namespace MojaBazaWiedzy
             //QUESTION35();
             //QUESTION62();
             //QUESTION163();
-            QUESTION37();
-
+            //QUESTION37();
+            //QUESTION117();
+            //QUESTION89();
+            QUESTION11();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -351,13 +355,21 @@ You need to create a LINQ query to meet the requirements.
             const string pattern = @"http://(www\.)?([^\.]+)\.com";
             List<string> result = new List<string>();
             MatchCollection myMatches = Regex.Matches(url, pattern);
-
+            //OK
             foreach (Match currentMatch in myMatches)
             {
                 result.Add(currentMatch.Value);
                 //result.Add(currentMatch.Groups.ToString());
             }
-            //result = (List<string>)myMatches.GetEnumerator();
+
+
+            //result=(List<string>)myMatches.SyncRoot; BŁAD KONWERSJI
+            //result = (List<string>)myMatches.GetEnumerator(); BŁAD KONWERSJI
+
+            //result = (from System.Text.RegularExpressions.Match m in myMatches select m.Value).ToList<string>(); OK
+
+            //result = (from System.Text.RegularExpressions.Match m in myMatches where !m.Success select m.Value).ToList<string>(); NIE BO: !SUCCESS
+
             foreach (string wynik in result)
             {
                 Console.WriteLine("wynik: " + wynik);
@@ -488,5 +500,118 @@ You need to create a LINQ query to meet the requirements.
             Console.WriteLine(interestAmount);
 
         }
+
+        private static void QUESTION117()
+        {
+            //SignAndVerify();
+            GetHash("a", "b");
+        }
+        public static byte[] GetHash(string filename, string algorithmType)
+        {
+            var hasher = HashAlgorithm.Create(algorithmType);
+            var fileBytes = System.IO.File.ReadAllBytes(filename);
+            //hasher.ComputeHash(fileBytes);
+            //return hasher.Hash();
+            //var outputBuffer = new byte[fileBytes.Length];
+            //hasher.TransformBlock(fileBytes, 0, fileBytes.Length, outputBuffer, 0);
+            //return outputBuffer;     
+            //hasher.ComputeHash(fileBytes);
+            //return hasher.Hash;
+
+            var outputBuffer = new byte[fileBytes.Length];
+            hasher.TransformBlock(fileBytes, 0, fileBytes.Length, outputBuffer, 0);
+            hasher.TransformFinalBlock(fileBytes, fileBytes.Length - 1, fileBytes.Length);
+            return outputBuffer;
+        }
+
+        public static void SignAndVerify()
+        {
+            string textToSign = "Test paragraph";
+            byte[] signature = Sign(textToSign, "cn = WouterDeKort");
+            // Uncomment this line to make the verification step fail
+            // signature[0] = 0;
+            Console.WriteLine(Verify(textToSign, signature));
+        }
+        static byte[] Sign(string text, string certSubject)
+        {
+            X509Certificate2 cert = GetCertificate();
+            var csp = (RSACryptoServiceProvider)cert.PrivateKey;
+            byte[] hash = HashData(text);
+            return csp.SignHash(hash, CryptoConfig.MapNameToOID("SHA1"));
+        }
+        static bool Verify(string text, byte[] signature)
+        {
+            X509Certificate2 cert = GetCertificate();
+            var csp = (RSACryptoServiceProvider)cert.PublicKey.Key;
+            byte[] hash = HashData(text);
+            return csp.VerifyHash(hash,CryptoConfig.MapNameToOID("SHA1"),
+                signature);
+        }
+        private static byte[] HashData(string text)
+        {
+            HashAlgorithm hashAlgorithm = new SHA1Managed();
+            UnicodeEncoding encoding = new UnicodeEncoding();
+            byte[] data = encoding.GetBytes(text);
+            byte[] hash = hashAlgorithm.ComputeHash(data);
+            return hash;
+        }
+        private static X509Certificate2 GetCertificate()
+        {
+            X509Store my = new X509Store("testCertStore",StoreLocation.CurrentUser);
+            my.Open(OpenFlags.ReadOnly);
+            //X509Certificate2 certificate = "CN=CERT_SIGN_TEST_CERT";
+            //if (my.Certificates.Count > 0)
+            
+            var certificate = my.Certificates[0];
+            
+            return certificate;
+        }
+        private static void QUESTION89()
+        {
+            
+        }
+        public bool ValidateJson(string json, Dictionary<string, object> result)
+        {
+            //nie bo tu w tej linijce bład podkreśla
+            //DataConractSerializer serializer = new DataContractSerializer();
+
+            //nie bo w linijce serializer.Deserialize<Dictionary<string, object>>(json); podkreśla: Deserialize<Dictionary<string, object>>(json);
+            //var serializer = new NetDataContractSerializer();
+
+            //tu bład: NetDataContractSerializer
+            //JavaScriptSerializer serializer = new NetDataContractSerializer();
+
+            //OK
+            //JavaScriptSerializer serializer = new JavaScriptSerializer();
+
+            //nie bo podkreśla: Deserialize<Dictionary<string, object>>(json); 
+            //var serializer = new DataContractSerializer();
+
+            //nie bo podkreśla: Deserialize<Dictionary<string, object>>(json); 
+            //XmlObjectSerializer serializer = new XmlObjectSerializer();
+
+            //OK
+            var serializer = new JavaScriptSerializer();
+
+            //nie bo podkreśla: Deserialize<Dictionary<string, object>>(json); 
+            //var serializer = new XmlObjectSerializer();
+
+            //nie bo podkreśla całe XmlSerrializer
+            //XmlSerrializer serrializer = new XmlSerrializer();
+
+            //nie bo podkreśla serializer
+            //NetDataContractSerializer serialozer = new NetDataContractSerializer();
+
+            try
+            {
+                result = serializer.Deserialize<Dictionary<string, object>>(json);
+                return true;
+            }
+            catch {
+                return false;
+            }
+        }
+
+
     }
 }
