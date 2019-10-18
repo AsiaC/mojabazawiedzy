@@ -11,6 +11,8 @@ using System.Text.RegularExpressions;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using System.Reflection;
+using System.Net;
 
 namespace MojaBazaWiedzy
 {
@@ -63,7 +65,12 @@ namespace MojaBazaWiedzy
             //QUESTIONALL236();
             //QUESTIONALL229();
             //QUESTIONALL219();
-            QUESTIONALL218();
+            //QUESTIONALL218();
+            //QUESTIONALL212();
+            //QUESTIONALL211();
+            //QUESTIONALL193();
+            //QUESTIONALL177();
+            QUESTIONALL165();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -648,7 +655,6 @@ You need to create a LINQ query to meet the requirements.
 
             //void INewInterface.Method1() { throw new NotImplementedException(); }
         }
-
         private static void QUESTIONALL219()
         {
             Console.WriteLine("QUESTIONALL219");
@@ -671,7 +677,7 @@ You need to create a LINQ query to meet the requirements.
                 Trace.CorrelationManager.ActivityId = orginalId;
             }
         }
-        private static void QUESTIONALL218()
+        /*private static void QUESTIONALL218()
         {
             Console.WriteLine("QUESTIONALL218");
             DateTime dat= DateTime.Today;
@@ -683,6 +689,115 @@ You need to create a LINQ query to meet the requirements.
             output = string.Format("Temperature at {0:t} on {0:mm/dd/yy}", date, temp){1:N2};
             string lblMessage = output;
             Console.WriteLine(lblMessage);
+        }
+        */
+        /* public static void QUESTIONALL212()
+         {
+             List<Type> types = (AppDomain.CurrentDomain.GetAssemblies()
+                 .SelectMany(t => t.GetTypes())
+                 .Where(t => t.IsClass && t.Assembly == this.GetType().Select)).ToList<Type>();
+         }
+         */
+        public static void QUESTIONALL211()
+        {
+            MyClass a = new MyClass();
+            a.doOperation("AddNum",2,3);
+        }
+        public class MyClass
+        {
+            public int AddNum(int numb1, int numb2)
+            {
+                Console.WriteLine("metoda AddNum");
+                int result = numb1 + numb2;
+                return result;
+            }
+            public int SubNumb(int numb1, int numb2)
+            {
+                Console.WriteLine("metoda SubNum");
+                int result = numb1 - numb2;
+                return result;
+            }
+            public string doOperation(string operationName, int numb1, int numb2)
+            {
+                object[] mParam = new object[] { numb1, numb2 };
+                MyClass myClassObj = new MyClass();
+                Type myTypeObj = myClassObj.GetType();
+                MethodInfo myMethodInfo = myTypeObj.GetMethod(operationName);
+                //Console.WriteLine(myMethodInfo.Invoke(myClassObj, mParam).ToString());
+                return myMethodInfo.Invoke(myClassObj, mParam).ToString();
+            }
+        }
+        public static void QUESTIONALL193()
+        {
+            Class1a a = new Class1a(1,"AS");
+            Class1a b = new Class1a(1,"AS");
+            Console.WriteLine(a.Equals(b));
+
+            Class1a c = new Class1a(2, "AS"); //inne id
+            Console.WriteLine(a.Equals(c));
+
+            Class1a d = new Class1a(1, "ASA"); //inne name
+            Console.WriteLine(a.Equals(d));
+
+            Class1a e = new Class1a(3, "ASI");//oba inne
+            Console.WriteLine(a.Equals(e));
+
+            Console.WriteLine(a.Equals(null));
+
+        }
+        public static void QUESTIONALL192()
+        {
+
+        }
+        public async void GetData(WebResponse response)
+        {
+            string urlText;
+            var sr = new StreamReader(response.GetResponseStream());
+            urlText = await sr.ReadToEndAsync();
+        }
+        public static void QUESTIONALL177()
+        {
+            Class1a a = new Class1a(1, "AS");
+            Class1a b = new Class1a(1, "AS");
+            Class1a c = new Class1a(2, "AS"); 
+            Class1a d = new Class1a(1, "ASA"); 
+            Class1a e = new Class1a(3, "ASI");
+            List<Class1a> lista = new List<Class1a>();
+            lista.Add(a);
+            lista.Add(b);
+            lista.Add(c);
+            lista.Add(d);
+            lista.Add(e);
+            //string result = "";
+            if (lista is List<Class1a>)
+                Console.WriteLine("lista is List<Class1a>");
+            if (lista is List<Class1a>[])
+                Console.WriteLine("lista is List<Class1a>[]");
+
+            if (lista.GetType() is List<Class1a>[])
+                Console.WriteLine("lista.GetType() is List<Class1a>[]");
+
+            if (lista.GetType() is List<Class1a>)
+                Console.WriteLine("lista.GetType() is List<Class1a>");
+        }
+        public static void QUESTIONALL165()
+        {
+            List<Producta> products = new List<Producta>()
+            {
+                new Producta(){ Name="Strawberry", CategoryID=1},
+                new Producta(){ Name="Banana", CategoryID=1},
+            };
+            List<Producta> B_Products = (List<Producta>)
+            //Product[] B_Product = (Product[])
+            //Array<Product>B_Products=(Array<Product>)
+                (
+                from product in products
+                where product.Name.StartsWith("B")
+                //select new { Name=product.Name}
+                select product
+                ).ToList();
+            
+
         }
     }
 }
