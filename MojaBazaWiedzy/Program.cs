@@ -71,8 +71,11 @@ namespace MojaBazaWiedzy
             //QUESTIONALL193();
             //QUESTIONALL177();
             //QUESTIONALL165();
-            //QUESTIONALL72();
-            QUESTIONALL79();
+            //QUESTIONALL157();
+            //QUESTIONALL156();
+            //QUESTIONALL132();
+            //QUESTIONALL126();
+            QUESTIONALL78();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -317,7 +320,6 @@ You need to create a LINQ query to meet the requirements.
         }
         private static void QUESTION24()
         { Console.WriteLine("W pliku word"); }
-
         public static void QUESTION26()
         {
             try
@@ -493,7 +495,6 @@ You need to create a LINQ query to meet the requirements.
         {
             Console.WriteLine("Log: {0}={1}", message, detail);
         }
-
         private static void QUESTION163()
         {
             //Dyrektywy preprocesora
@@ -512,7 +513,6 @@ You need to create a LINQ query to meet the requirements.
             Console.WriteLine(interestAmount);
 
         }
-
         private static void QUESTION117()
         {
             //SignAndVerify();
@@ -535,7 +535,6 @@ You need to create a LINQ query to meet the requirements.
             hasher.TransformFinalBlock(fileBytes, fileBytes.Length - 1, fileBytes.Length);
             return outputBuffer;
         }
-
         public static void SignAndVerify()
         {
             string textToSign = "Test paragraph";
@@ -797,22 +796,73 @@ You need to create a LINQ query to meet the requirements.
                 where product.Name.StartsWith("B")
                 //select new { Name=product.Name}
                 select product
-                ).ToList();
-            
+                );//.ToList();
 
+            foreach (var item in B_Products)
+            {
+                Console.WriteLine("Name={0}, CategorID={1}",item.Name, item.CategoryID);
+            }
         }
-        public static void QUESTIONALL72()
+        public static void QUESTIONALL157()
         {
-            ArrayList array1 = new ArrayList();
-            int var1 = 10;
-            int var2;
-            array1.Add(var1);
-            var2 = (int)array1[0];
+            var starter = new UseStart();
+            ((IHome)starter).Start();
+            ((IOffice)starter).Start();
 
         }
-        public static void QUESTIONALL79()
+        public static void QUESTIONALL156()
+        {
+            var message = "Hello World";
+            //SendMessage(message.Replace("Hello", "Goodbye")); //OK
+            message=message.Replace("Hello", "Goodbye"); //OK
+            SendMessage(message);
+        }
+        public static void SendMessage(string text)
+        {
+            Console.WriteLine(text);
+        }
+        public static void QUESTIONALL132()
+        {
+            float a=15.644341234567891234567891234567F;
+            ConvertAmount(a);
+        }
+        private static void ConvertAmount(float amount)
+        {
+            Console.WriteLine("ConvertAmount funkcja. Wartość={0}, typ ={1}", amount, amount.GetType()); 
+            TransferFunds((double)amount);
+            Console.WriteLine("PO. Wartość={0}, typ ={1}", amount, amount.GetType());
+        }
+        private static void TransferFunds(double funds)
+        {
+            Console.WriteLine("TransferFunds funkcja. Wartość={0}, typ={1}", funds, funds.GetType());            
+        }
+        private static void QUESTIONALL126()
+        {
+            List<Int32> items = new List<int>() {
+            100,95,80,75,95};
+            var result1=items.First(i=>i> 80);
+            var result2 = items.Where(i2 => i2 > 80);
+            //var result3 = from i3 in items
+            //              groupby i3 into grouped
+            //    where grouped.Key>80
+            //    select i3;
+            var result4 = items.Any(i4 => i4 > 80);
+            var result5 = items.Skip(2);
+            var result6 = items.Take(2);
+            var result7 = from i7 in items
+                          where i7 > 80
+                          select i7;
+        }
+        private static void QUESTIONALL78()
         {
 
         }
+        public Class1 CreateObject<Class1>()
+//         where Class1 : new();
+        {
+            Class1 obj = new Class1();
+            return obj;
+        }
+
     }
 }
