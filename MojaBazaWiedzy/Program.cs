@@ -70,7 +70,9 @@ namespace MojaBazaWiedzy
             //QUESTIONALL211();
             //QUESTIONALL193();
             //QUESTIONALL177();
-            QUESTIONALL165();
+            //QUESTIONALL165();
+            //QUESTIONALL72();
+            QUESTIONALL79();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -797,6 +799,19 @@ You need to create a LINQ query to meet the requirements.
                 select product
                 ).ToList();
             
+
+        }
+        public static void QUESTIONALL72()
+        {
+            ArrayList array1 = new ArrayList();
+            int var1 = 10;
+            int var2;
+            array1.Add(var1);
+            var2 = (int)array1[0];
+
+        }
+        public static void QUESTIONALL79()
+        {
 
         }
     }
