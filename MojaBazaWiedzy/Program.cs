@@ -70,12 +70,7 @@ namespace MojaBazaWiedzy
             //QUESTIONALL211();
             //QUESTIONALL193();
             //QUESTIONALL177();
-            //QUESTIONALL165();
-            //QUESTIONALL157();
-            //QUESTIONALL156();
-            //QUESTIONALL132();
-            //QUESTIONALL126();
-            QUESTIONALL78();
+            QUESTIONALL165();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -796,18 +791,8 @@ You need to create a LINQ query to meet the requirements.
                 where product.Name.StartsWith("B")
                 //select new { Name=product.Name}
                 select product
-                );//.ToList();
-
-            foreach (var item in B_Products)
-            {
-                Console.WriteLine("Name={0}, CategorID={1}",item.Name, item.CategoryID);
-            }
-        }
-        public static void QUESTIONALL157()
-        {
-            var starter = new UseStart();
-            ((IHome)starter).Start();
-            ((IOffice)starter).Start();
+                ).ToList();
+            
 
         }
         public static void QUESTIONALL156()
