@@ -59,7 +59,9 @@
     <Compile Include="Product.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rzutowanie.cs" />
     <Compile Include="ScoreCard.CS" />
+    <Compile Include="Temperature.cs" />
     <Compile Include="UseStart.cs" />
     <Compile Include="Widget.cs" />
     <Compile Include="Worker.cs" />

@@ -13,6 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Net;
+using System.Collections.Specialized;
 
 namespace MojaBazaWiedzy
 {
@@ -75,7 +76,9 @@ namespace MojaBazaWiedzy
             //QUESTIONALL72();
             //QUESTIONALL88();
             //QUESTIONALL95();
-            QUESTIONALL97();
+            //QUESTIONALL97();
+            //QUESTIONALL195();
+            QUESTIONALL37();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -893,6 +896,42 @@ You need to create a LINQ query to meet the requirements.
         public static void  QUESTIONALL97()
        {
             EmployeeRoster A = new EmployeeRoster();
+        }
+        public static void QUESTIONALL195()
+        {
+            Temperature A = new Temperature();
+            A.Farenheit = 5.6;
+            Temperature B = new Temperature();
+            B.Farenheit = 5.7;
+            Console.WriteLine(A.CompareTo(B));
+        }
+        public static void QUESTIONALL37()
+        {
+            //class Rzutowanie : Temperature
+            Temperature A = new Temperature();
+            Rzutowanie B = new Rzutowanie();
+            var C = A is Temperature; //C==true
+            var D = A as Temperature;// D=0
+            var E = (Temperature)A; //E==0
+            var F = A as Rzutowanie; //F=NULL
+            dynamic H = A; //0
+            var G= (Rzutowanie)A; // G=NULL i dodatkowo rzuci wyjątek InvalidCastException
+           
+        }
+        public static void QUESTIONALL40()
+        {
+
+        }
+        public Task<byte[]> SendMessage(string url, int intA, int intB)
+        {
+            var client = new WebClient();
+            //var data = string.Format("a={0}&b={1}", intA, intB);
+            //return client.UploadStringTaskAsync(new Uri(url), data);//nie bo w ten sposób otrzymam Task<string> a ja potrzebuje Task<byte[]>
+            //return client.UploadFileTaskAsync(new Uri(url), data);//
+            //return client.UploadDataTaskAsync(new Uri(url), Encoding.UTF8.GetBytes(data));//
+
+            var nvc = new NameValueCollection() { { "a", intA.ToString()}, { "b", intB.ToString()} };
+            return client.UploadValuesTaskAsync(new Uri(url), nvc);//
         }
     }
 }
