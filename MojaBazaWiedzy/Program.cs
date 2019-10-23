@@ -78,7 +78,8 @@ namespace MojaBazaWiedzy
             //QUESTIONALL95();
             //QUESTIONALL97();
             //QUESTIONALL195();
-            QUESTIONALL37();
+            //QUESTIONALL37();
+            QUESTIONALL181();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -932,6 +933,11 @@ You need to create a LINQ query to meet the requirements.
 
             var nvc = new NameValueCollection() { { "a", intA.ToString()}, { "b", intB.ToString()} };
             return client.UploadValuesTaskAsync(new Uri(url), nvc);//
+        }
+        public static void QUESTIONALL181()
+        {
+            "https:www.google.com".IsUrl();
+
         }
     }
 }

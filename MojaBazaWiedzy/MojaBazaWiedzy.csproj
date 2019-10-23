@@ -48,6 +48,7 @@
     <Compile Include="Catalog.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="EmployeeRoster.cs" />
+    <Compile Include="ExtensionMethods.cs" />
     <Compile Include="IHome.cs" />
     <Compile Include="IOffice.cs" />
     <Compile Include="ItemBase.cs" />
