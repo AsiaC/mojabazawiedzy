@@ -25,10 +25,10 @@ namespace InterfejsIComparable
             }
             // Sort ArrayList.
             temperatures.Sort();
-
+            Console.WriteLine("posortowane: ");
             foreach (Temperature temp in temperatures)
                 Console.WriteLine(temp.Fahrenheit);
-            
+            Console.WriteLine(  );
             Console.ReadKey();
         }
     }
