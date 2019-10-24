@@ -47,14 +47,18 @@
   <ItemGroup>
     <Compile Include="Catalog.cs" />
     <Compile Include="Class1.cs" />
+    <Compile Include="Customer.cs" />
     <Compile Include="EmployeeRoster.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="IHome.cs" />
+    <Compile Include="ICustomer.cs" />
     <Compile Include="IOffice.cs" />
     <Compile Include="ItemBase.cs" />
     <Compile Include="Kiosk.cs" />
     <Compile Include="Loan.cs" />
     <Compile Include="LoanCollection.cs" />
+    <Compile Include="MyCustomerClass.cs" />
+    <Compile Include="MyCustomerClass2.cs" />
     <Compile Include="Name.cs" />
     <Compile Include="Name1.cs" />
     <Compile Include="Product.cs" />
@@ -63,6 +67,7 @@
     <Compile Include="Rzutowanie.cs" />
     <Compile Include="ScoreCard.CS" />
     <Compile Include="Temperature.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="UseStart.cs" />
     <Compile Include="Widget.cs" />
     <Compile Include="Worker.cs" />
