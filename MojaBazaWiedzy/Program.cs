@@ -857,11 +857,11 @@ You need to create a LINQ query to meet the requirements.
         {
 
         }
-        public Class1 CreateObject<Class1>()
+        //public Class1 CreateObject<Class1>()
 //         where Class1 : new();
         {
-            Class1 obj = new Class1();
-            return obj;
+            //    Class1 obj = new Class1();
+            //    return obj;
         }
 
     }
