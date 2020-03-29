@@ -13,6 +13,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
 using System.Reflection;
 using System.Net;
+using System.Collections.Specialized;
 
 namespace MojaBazaWiedzy
 {
@@ -71,11 +72,18 @@ namespace MojaBazaWiedzy
             //QUESTIONALL193();
             //QUESTIONALL177();
             //QUESTIONALL165();
-            //QUESTIONALL157();
-            //QUESTIONALL156();
-            //QUESTIONALL132();
-            //QUESTIONALL126();
-            QUESTIONALL78();
+            //QUESTIONAALL79();
+            //QUESTIONALL72();
+            //QUESTIONALL88();
+            //QUESTIONALL95();
+            //QUESTIONALL97();
+            //QUESTIONALL195();
+            //QUESTIONALL37();
+            //QUESTIONALL181();
+            //QUESTIONALL44();
+            //QUESTIONALL46();
+            //QUESTIONALL215();
+            QUESTIONALL228();
             Console.ReadKey();
         }
         private static void QUESTION1()
@@ -502,12 +510,12 @@ You need to create a LINQ query to meet the requirements.
         }
         private static void QUESTION37()
         {
-            
-            int loanAmount=0;
-            int loanTerm=2;
-            decimal loanRate=3;
+
+            int loanAmount = 0;
+            int loanTerm = 2;
+            decimal loanRate = 3;
             //loanAmount<=0
-            Trace.Assert(loanAmount>0);
+            Trace.Assert(loanAmount > 0);
             decimal interestAmount = loanAmount * loanTerm * loanRate;
 
             Console.WriteLine(interestAmount);
@@ -555,7 +563,7 @@ You need to create a LINQ query to meet the requirements.
             X509Certificate2 cert = GetCertificate();
             var csp = (RSACryptoServiceProvider)cert.PublicKey.Key;
             byte[] hash = HashData(text);
-            return csp.VerifyHash(hash,CryptoConfig.MapNameToOID("SHA1"),
+            return csp.VerifyHash(hash, CryptoConfig.MapNameToOID("SHA1"),
                 signature);
         }
         private static byte[] HashData(string text)
@@ -568,18 +576,18 @@ You need to create a LINQ query to meet the requirements.
         }
         private static X509Certificate2 GetCertificate()
         {
-            X509Store my = new X509Store("testCertStore",StoreLocation.CurrentUser);
+            X509Store my = new X509Store("testCertStore", StoreLocation.CurrentUser);
             my.Open(OpenFlags.ReadOnly);
             //X509Certificate2 certificate = "CN=CERT_SIGN_TEST_CERT";
             //if (my.Certificates.Count > 0)
-            
+
             var certificate = my.Certificates[0];
-            
+
             return certificate;
         }
         private static void QUESTION89()
         {
-            
+
         }
         public bool ValidateJson(string json, Dictionary<string, object> result)
         {
@@ -661,7 +669,7 @@ You need to create a LINQ query to meet the requirements.
             Console.WriteLine("QUESTIONALL219");
             DoWork();
         }
-        static TraceSource ts = new TraceSource("Contoso",SourceLevels.ActivityTracing );
+        static TraceSource ts = new TraceSource("Contoso", SourceLevels.ActivityTracing);
         public static void DoWork()
         {
             var orginalId = Trace.CorrelationManager.ActivityId;
@@ -673,7 +681,7 @@ You need to create a LINQ query to meet the requirements.
 
             }
             finally {
-                ts.TraceTransfer(1,"Changing activity", orginalId);
+                ts.TraceTransfer(1, "Changing activity", orginalId);
                 ts.TraceEvent(TraceEventType.Stop, 0, "Stop");
                 Trace.CorrelationManager.ActivityId = orginalId;
             }
@@ -702,7 +710,7 @@ You need to create a LINQ query to meet the requirements.
         public static void QUESTIONALL211()
         {
             MyClass a = new MyClass();
-            a.doOperation("AddNum",2,3);
+            a.doOperation("AddNum", 2, 3);
         }
         public class MyClass
         {
@@ -730,20 +738,34 @@ You need to create a LINQ query to meet the requirements.
         }
         public static void QUESTIONALL193()
         {
-            Class1a a = new Class1a(1,"AS");
-            Class1a b = new Class1a(1,"AS");
+            Class1a a = new Class1a(1, "AS");
+            Class1a b = new Class1a(1, "AS");
             Console.WriteLine(a.Equals(b));
 
-            Class1a c = new Class1a(2, "AS"); //inne id
-            Console.WriteLine(a.Equals(c));
+            //Class1a c = new Class1a(2, "AS"); //inne id
+            //Console.WriteLine(a.Equals(c));
 
             Class1a d = new Class1a(1, "ASA"); //inne name
             Console.WriteLine(a.Equals(d));
 
-            Class1a e = new Class1a(3, "ASI");//oba inne
-            Console.WriteLine(a.Equals(e));
+            //Class1a e = new Class1a(3, "ASI");//oba inne
+            //Console.WriteLine(a.Equals(e));
 
-            Console.WriteLine(a.Equals(null));
+            //Console.WriteLine(a.Equals(null));
+            string a1 = "AS";
+            string b1 = "AS";
+            if (!a1.Equals(b1))
+                Console.WriteLine("Equals pokazało że rózne : if (!a1.Equals(b1))");
+            else
+                Console.WriteLine("Equals pokazalo ze takie same");
+            if (a1!=b1)
+                Console.WriteLine("a1!=b1 pokazało że rózne ");
+            else
+                Console.WriteLine("takie same");
+            if (!Object.Equals(a1,b1))
+                Console.WriteLine("Equals pokazało że rózne : !Object.Equals(a1,b1)");
+            else
+                Console.WriteLine("Equals pokazalo ze takie same");
 
         }
         public static void QUESTIONALL192()
@@ -760,8 +782,8 @@ You need to create a LINQ query to meet the requirements.
         {
             Class1a a = new Class1a(1, "AS");
             Class1a b = new Class1a(1, "AS");
-            Class1a c = new Class1a(2, "AS"); 
-            Class1a d = new Class1a(1, "ASA"); 
+            Class1a c = new Class1a(2, "AS");
+            Class1a d = new Class1a(1, "ASA");
             Class1a e = new Class1a(3, "ASI");
             List<Class1a> lista = new List<Class1a>();
             lista.Add(a);
@@ -796,25 +818,15 @@ You need to create a LINQ query to meet the requirements.
                 where product.Name.StartsWith("B")
                 //select new { Name=product.Name}
                 select product
-                );//.ToList();
+                ).ToList();
 
-            foreach (var item in B_Products)
-            {
-                Console.WriteLine("Name={0}, CategorID={1}",item.Name, item.CategoryID);
-            }
-        }
-        public static void QUESTIONALL157()
-        {
-            var starter = new UseStart();
-            ((IHome)starter).Start();
-            ((IOffice)starter).Start();
 
         }
         public static void QUESTIONALL156()
         {
             var message = "Hello World";
             //SendMessage(message.Replace("Hello", "Goodbye")); //OK
-            message=message.Replace("Hello", "Goodbye"); //OK
+            message = message.Replace("Hello", "Goodbye"); //OK
             SendMessage(message);
         }
         public static void SendMessage(string text)
@@ -823,24 +835,24 @@ You need to create a LINQ query to meet the requirements.
         }
         public static void QUESTIONALL132()
         {
-            float a=15.644341234567891234567891234567F;
+            float a = 15.644341234567891234567891234567F;
             ConvertAmount(a);
         }
         private static void ConvertAmount(float amount)
         {
-            Console.WriteLine("ConvertAmount funkcja. Wartość={0}, typ ={1}", amount, amount.GetType()); 
+            Console.WriteLine("ConvertAmount funkcja. Wartość={0}, typ ={1}", amount, amount.GetType());
             TransferFunds((double)amount);
             Console.WriteLine("PO. Wartość={0}, typ ={1}", amount, amount.GetType());
         }
         private static void TransferFunds(double funds)
         {
-            Console.WriteLine("TransferFunds funkcja. Wartość={0}, typ={1}", funds, funds.GetType());            
+            Console.WriteLine("TransferFunds funkcja. Wartość={0}, typ={1}", funds, funds.GetType());
         }
         private static void QUESTIONALL126()
         {
             List<Int32> items = new List<int>() {
             100,95,80,75,95};
-            var result1=items.First(i=>i> 80);
+            var result1 = items.First(i => i > 80);
             var result2 = items.Where(i2 => i2 > 80);
             //var result3 = from i3 in items
             //              groupby i3 into grouped
@@ -858,11 +870,172 @@ You need to create a LINQ query to meet the requirements.
 
         }
         //public Class1 CreateObject<Class1>()
-//         where Class1 : new();
+        //         where Class1 : new();
+        //{
+        //Class1 obj = new Class1();
+        //return obj;
+        // }
+        public static void QUESTIONAALL79()
+        {
+            Worker w = new Worker();
+            w.Run();
+        }
+        public static void QUESTIONALL72()
+        {
+            ArrayList array1 = new ArrayList();
+            int var1 = 10;
+            int var2;
+            array1.Add(var1);
+            var2 = (int)array1[0];
+        }
+        public static void QUESTIONALL88()
+        {
+            ArrayList array1 = new ArrayList();
+            int var1 = 10;
+            int var2;
+            array1.Add(var1);
+            //var2 = ((List<int>)array1)[0];
+            //var2 = array1[0].Equals(typeof(int));
+            var2 = Convert.ToInt32(array1[0]);
+            //var2 = ((int[])array1)[0];
+        }
+        public static void QUESTIONALL95()
+        {
+            FormatCoins("Asia", 5);
+
+        }
+        public static void FormatCoins(string name, int coins)
         {
             //    Class1 obj = new Class1();
             //    return obj;
+            Console.WriteLine(String.Format("Player {0}, collected {1} coins", name, coins.ToString("###0")));
+            Console.WriteLine(String.Format("Player {0}, collected {1:000#} coins", name, coins));
+            //Console.WriteLine(String.Format("Player {name}, collected {coins.ToString('000')} coins"));
+            Console.WriteLine(String.Format("Player {0}, collected {1:D3} coins", name, coins));
+            Console.WriteLine(String.Format("Player {0}, collected {1:###} coins", name, coins));
+        }
+        public static void  QUESTIONALL97()
+       {
+            EmployeeRoster A = new EmployeeRoster();
+        }
+        public static void QUESTIONALL195()
+        {
+            Temperature A = new Temperature();
+            A.Farenheit = 5.6;
+            Temperature B = new Temperature();
+            B.Farenheit = 5.7;
+            Console.WriteLine(A.CompareTo(B));
+        }
+        public static void QUESTIONALL37()
+        {
+            //class Rzutowanie : Temperature
+            Temperature A = new Temperature();
+            Rzutowanie B = new Rzutowanie();
+            var C = A is Temperature; //C==true
+            var D = A as Temperature;// D=0
+            var E = (Temperature)A; //E==0
+            var F = A as Rzutowanie; //F=NULL
+            dynamic H = A; //0
+            var G= (Rzutowanie)A; // G=NULL i dodatkowo rzuci wyjątek InvalidCastException
+           
+        }
+        public static void QUESTIONALL40()
+        {
+
+        }
+        public Task<byte[]> SendMessage(string url, int intA, int intB)
+        {
+            var client = new WebClient();
+            //var data = string.Format("a={0}&b={1}", intA, intB);
+            //return client.UploadStringTaskAsync(new Uri(url), data);//nie bo w ten sposób otrzymam Task<string> a ja potrzebuje Task<byte[]>
+            //return client.UploadFileTaskAsync(new Uri(url), data);//
+            //return client.UploadDataTaskAsync(new Uri(url), Encoding.UTF8.GetBytes(data));//
+
+            var nvc = new NameValueCollection() { { "a", intA.ToString()}, { "b", intB.ToString()} };
+            return client.UploadValuesTaskAsync(new Uri(url), nvc);//
+        }
+        public static void QUESTIONALL181()
+        {
+            "https:www.google.com".IsUrl();
+
+        }
+        public static void QUESTIONALL44()
+        {
+            Console.WriteLine(CalculateInterest(0, 2, 3));
+
+        }
+        private static decimal CalculateInterest(decimal loanAmount, int loanTerm, decimal loanRate)
+        {
+            Debug.Assert(loanAmount > 0);
+            decimal interestAmount = loanAmount * loanTerm * loanRate;
+
+            return interestAmount;
+        }
+        public static void QUESTIONALL46()
+        {
+            CalculateInterest2(1, 2, 3);
+
+        }
+        private static decimal CalculateInterest2(decimal loanAmount, int loanTerm, decimal loanRate)
+        {
+            
+            decimal interestAmount = loanAmount * loanTerm * loanRate;
+            //#if DEBUG
+            LogLine("InterestAmount: ", interestAmount);
+            //#endif
+            return interestAmount;
+        }
+        [Conditional("DEBUG")]
+        public static void LogLine(string v, decimal interestAmount)
+        {
+            Console.WriteLine("Log: {0}={1}", v, interestAmount);
+        }
+        public static void QUESTIONALL119()
+        {
+            /*
+            var message = new Object();
+            message.From = "Morris";
+            message.To = "Marry";
+            message.Content = "Hello word";
+            SendMessage(message);
+            */
+            
+            dynamic message = new { From = "Morris", To = "Marry", Content = "Hello word" };
+            SendMessage(message);
+
         }
 
+        private static void SendMessage(dynamic message)
+        {
+            throw new NotImplementedException();
+        }
+        private static void QUESTIONALL215()
+        {
+            
+        }
+        private static void QUESTIONALL228()
+        {
+            //kopuje z jednego pliku do drugiego(tworzy console.txt jesli go nie ma)
+            using (StreamWriter writer=new StreamWriter(@"C:\Users\jczaplicka001\Downloads\console.txt")) //pisze do tego pliku
+            {
+                Console.SetOut(writer);
+                using (FileStream stream = new FileStream(@"C:\Users\jczaplicka001\Downloads\file.txt", FileMode.Open)) //czyta z tego pliku
+                {
+                    using (StreamReader reader = new StreamReader(stream))
+                    {
+                        while (!reader.EndOfStream)
+                            Console.WriteLine(reader.ReadLine());
+                    }
+                }
+            }
+        }
+        private static void QUESTIONALL223()
+        {
+            MyCustomerClass a = new MyCustomerClass();
+            Customer b = new Customer();
+            MyCustomerClass2 c = new MyCustomerClass2();
+            
+        }
     }
+   
 }
